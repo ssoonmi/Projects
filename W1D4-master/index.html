@@ -1,0 +1,87 @@
+
+<html>
+  <head>
+  <title>Lasagna Recipe</title>
+  </head>
+  <body>
+    <header>
+      <img src = "https://pbs.twimg.com/profile_images/378800000699275845/28983bbc0ac0a12cde1c0dc3fc818b4b.png" />
+      <h1>Lasagna Recipe</h1>
+      <nav>
+        <ul>
+          <li><a href = '#Description'>Description</a></li>
+          <li><a href ='#Ingredients'>Ingredients</a></li>
+          <li><a href ='#Directions'>Directions</a></li>
+          <li><a href ='#Comment'>Comment</a></li>
+          <li><a href ='#Reviews'>Review</a></li>
+        </ul>
+      </nav>
+    </header>
+    <aside id='Ingredients'>
+        <h2>Ingredients</h2>
+        <ul>
+          <li>Olive Oil</li>
+          <li>Lasagna sheets</li>
+          <li>Tomato sauce</li>
+          <li>Beef</li>
+          <li>Garlic, minced</li>
+          <li>Cheese</li>
+        </ul>
+    </aside>
+
+    <section id='Description'>
+      <h2> Boiled Lasaga sheets with tomato meat sauce and cheese</h2>
+      <p> Delicious Lasagna recipe </p>
+      <figure>
+        <img src = 'https://images-gmi-pmc.edge-generalmills.com/93423fcb-7d22-4156-bad7-c007473d9e60.jpg' />
+        <figcaption>
+          <a href = 'https://en.wikipedia.org/wiki/Lasagne'>Link to Lasagna Wiki</a>
+        </figcaption>
+      </figure>
+
+
+      <div id='Directions'>
+        <h2>Directions</h2>
+        <ol>
+          <li>Boil lasagna sheets</li>
+          <li>Mince garlic</li>
+          <li>Grate cheese</li>
+          <li>Cook beef</li>
+          <li>Layer ragu</li>
+          <li>Layer cheese and beef</li>
+          <li>Layer lasagna sheets</li>
+          <li>Bake at 400 degrees for 20 min</li>
+        </ol>
+      </div>
+    </section>
+    <hr/>
+    <section id="Reviews">
+      <h2>Make a Review</h2>
+      <form>
+        <label for="reviewer">Reviewer Name</label>
+          <input type="text" id="reviewer"/><br>
+        <label for="rating">Rating</label>
+          <input type="radio" value="1" name="rating" checked />1
+          <input type="radio" value="2" name="rating"/>2
+          <input type="radio" value="3" name="rating"/>3
+          <input type="radio" value="4" name="rating"/>4
+          <input type="radio" value="5" name="rating"/>5 <br>
+        <label for="expertise">Cooking Expertise</label>
+          <select>
+            <option value="default">Select Cooking Expertise</option>
+            <option value="sometimes">Sometimes Cook</option>
+            <option value="everyday">Cook Everyday</option>
+            <option value="hobby">Cooking is a Hobby</option>
+            <option value="pro">Professional Chef</option>
+          </select><br>
+        <label>Review<br>
+          <textarea cols="40" rows="15"></textarea>
+        </label><br>
+        <input type="submit" value="Submit Review">
+      </form>
+    </section>
+
+
+    <footer id='Comment'><p>From the City of Naples, Italy</p></footer>
+  </body>
+</html>
