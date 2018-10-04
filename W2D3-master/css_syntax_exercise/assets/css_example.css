@@ -1,0 +1,32 @@
+body {
+    font-family: arial, sans-serif;
+    background-color: lightblue;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.ingredients-list {
+    list-style: square inside;
+    margin:  10px;
+}
+
+ol {list-style: hangul;margin-left: 30px;}
+
+header > img {
+    width:  100px;
+}
+
+ul li a {
+    font: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color:  inherit;
+}
