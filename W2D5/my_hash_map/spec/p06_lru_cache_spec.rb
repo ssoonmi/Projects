@@ -23,7 +23,9 @@ describe LRUCache do
       expect(prc).to receive(:call).exactly(3).times
 
       3.times do
-        1.upto(3) { |i| lru.get(i) }
+        1.upto(3) do |i|
+          lru.get(i)
+        end
       end
     end
 

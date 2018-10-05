@@ -68,12 +68,24 @@ class LinkedList
     false
   end
 
+  def unshift(key, val)
+    new_node = Node.new(key, val)
+    next_node = self.head.next
+
+    next_node.prev = new_node
+    new_node.next = next_node
+    new_node.prev = self.head
+    self.head.next = new_node
+  end
+
   def append(key, val)
     new_node = Node.new(key, val)
+
     new_node.prev = self.tail.prev
     self.tail.prev.next = new_node
     self.tail.prev = new_node
     new_node.next = self.tail
+    return new_node
   end
 
   def update(key, val)
@@ -96,11 +108,11 @@ class LinkedList
         next_node = node.next
         prev_node.next = next_node
         next_node.prev = prev_node
-        return true
+        return node
       end
       node = node.next
     end
-    false
+    nil
   end
 
   def each(&prc)
