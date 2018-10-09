@@ -3,9 +3,10 @@ require_relative 'question'
 require_relative 'reply'
 require_relative 'question_follow'
 require_relative 'question_like'
+require_relative 'model_base'
 
 
-class User
+class User < ModelBase
   attr_accessor :fname, :lname
   attr_reader :id
 
@@ -19,18 +20,17 @@ class User
     users.map { |datum| User.new(datum) }
   end
 
-
-  def self.find_by_id(id)
-    user = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        users
-      WHERE
-        id = ?
-    SQL
-    User.new(user.first)
-  end
+  # def self.find_by_id(id)
+  #   user = QuestionsDatabase.instance.execute(<<-SQL, id)
+  #     SELECT
+  #       *
+  #     FROM
+  #       users
+  #     WHERE
+  #       id = ?
+  #   SQL
+  #   User.new(user.first)
+  # end
 
   def self.find_by_name(fname, lname)
     user = QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
@@ -84,26 +84,26 @@ class User
     avg_likes.first['avg_likes']
   end
 
-  def save
-    if self.id.nil?
-      QuestionsDatabase.instance.execute(<<-SQL, self.fname, self.lname)
-        INSERT INTO
-          users
-        VALUES
-          (?, ?)
-      SQL
-      @id = SQLite3.Database.last_insert_row_id
-    else
-      QuestionsDatabase.instance.execute(<<-SQL, self.fname, self.lname, self.id)
-        UPDATE
-          users( fname, lname)
-        SET
-          fname = ?,
-          lname = ?
-        WHERE
-          id = ?
-      SQL
-    end
-  end
+  # def save
+  #   if self.id.nil?
+  #     QuestionsDatabase.instance.execute(<<-SQL, self.fname, self.lname)
+  #       INSERT INTO
+  #         users
+  #       VALUES
+  #         (?, ?)
+  #     SQL
+  #     @id = SQLite3.Database.last_insert_row_id
+  #   else
+  #     QuestionsDatabase.instance.execute(<<-SQL, self.fname, self.lname, self.id)
+  #       UPDATE
+  #         users( fname, lname)
+  #       SET
+  #         fname = ?,
+  #         lname = ?
+  #       WHERE
+  #         id = ?
+  #     SQL
+  #   end
+  # end
 
 end

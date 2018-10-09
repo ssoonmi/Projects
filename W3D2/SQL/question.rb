@@ -3,8 +3,9 @@ require_relative 'user'
 require_relative 'reply'
 require_relative 'question_follow'
 require_relative 'question_like'
+require_relative 'model_base'
 
-class Question
+class Question < ModelBase
   attr_accessor :title, :body, :author_id
   attr_reader :id
 
@@ -18,17 +19,17 @@ class Question
     questions.map { |datum| Question.new(datum) }
   end
 
-  def self.find_by_id(id)
-    question = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        questions
-      WHERE
-        id = ?
-    SQL
-    Question.new(question.first)
-  end
+  # def self.find_by_id(id)
+  #   question = QuestionsDatabase.instance.execute(<<-SQL, id)
+  #     SELECT
+  #       *
+  #     FROM
+  #       questions
+  #     WHERE
+  #       id = ?
+  #   SQL
+  #   Question.new(question.first)
+  # end
 
   def self.find_by_author_id(author_id)
     questions = QuestionsDatabase.instance.execute(<<-SQL, author_id)

@@ -3,8 +3,9 @@ require_relative 'question'
 require_relative 'user'
 require_relative 'question_follow'
 require_relative 'reply'
+require_relative 'model_base'
 
-class QuestionLike
+class QuestionLike < ModelBase
   attr_accessor :question_id, :like_id
   attr_reader :id
 
@@ -19,17 +20,17 @@ class QuestionLike
   end
 
 
-  def self.find_by_id(id)
-    question_like = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        question_likes
-      WHERE
-        id = ?
-    SQL
-    QuestionLike.new(question_like.first)
-  end
+  # def self.find_by_id(id)
+  #   question_like = QuestionsDatabase.instance.execute(<<-SQL, id)
+  #     SELECT
+  #       *
+  #     FROM
+  #       question_likes
+  #     WHERE
+  #       id = ?
+  #   SQL
+  #   QuestionLike.new(question_like.first)
+  # end
 
   def self.likers_for_question_id(question_id)
     users = QuestionsDatabase.instance.execute(<<-SQL, question_id)

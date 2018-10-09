@@ -3,34 +3,35 @@ require_relative 'question'
 require_relative 'user'
 require_relative 'question_like'
 require_relative 'reply'
+require_relative 'model_base'
 
 
-class QuestionFollow
+class QuestionFollow < ModelBase
   attr_accessor :question_id, :follower_id
   attr_reader :id
 
-  def self.all
-    follows = QuestionsDatabase.instance.execute(<<-SQL)
-      SELECT
-        *
-      FROM
-        question_follows
-    SQL
-    follows.map { |datum| QuestionFollow.new(datum) }
-  end
+  # def self.all
+  #   follows = QuestionsDatabase.instance.execute(<<-SQL)
+  #     SELECT
+  #       *
+  #     FROM
+  #       question_follows
+  #   SQL
+  #   follows.map { |datum| QuestionFollow.new(datum) }
+  # end
 
 
-  def self.find_by_id(id)
-    follow = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        question_follows
-      WHERE
-        id = ?
-    SQL
-    QuestionFollow.new(follow.first)
-  end
+  # def self.find_by_id(id)
+  #   follow = QuestionsDatabase.instance.execute(<<-SQL, id)
+  #     SELECT
+  #       *
+  #     FROM
+  #       question_follows
+  #     WHERE
+  #       id = ?
+  #   SQL
+  #   QuestionFollow.new(follow.first)
+  # end
 
   def self.followers_for_question_id(question_id)
     users = QuestionsDatabase.instance.execute(<<-SQL, question_id)

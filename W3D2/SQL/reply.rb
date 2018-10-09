@@ -3,9 +3,10 @@ require_relative 'question'
 require_relative 'user'
 require_relative 'question_follow'
 require_relative 'question_like'
+require_relative 'model_base'
 
 
-class Reply
+class Reply < ModelBase
   attr_accessor :body, :parent_reply_id, :replier_id, :question_id
   attr_reader :id
 
@@ -20,17 +21,17 @@ class Reply
   end
 
 
-  def self.find_by_id(id)
-    reply = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        replies
-      WHERE
-        id = ?
-    SQL
-    Reply.new(reply.first)
-  end
+  # def self.find_by_id(id)
+  #   reply = QuestionsDatabase.instance.execute(<<-SQL, id)
+  #     SELECT
+  #       *
+  #     FROM
+  #       replies
+  #     WHERE
+  #       id = ?
+  #   SQL
+  #   Reply.new(reply.first)
+  # end
 
   def self.find_by_replier_id(replier_id)
     replies = QuestionsDatabase.instance.execute(<<-SQL, replier_id)
