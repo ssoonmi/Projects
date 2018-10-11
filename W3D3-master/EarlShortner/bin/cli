@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+require 'byebug'
+
+puts "What is your email?"
+print " > "
+email = gets.chomp
+
+User.create!(email: email) unless User.exists?(email: email)
+user = User.find_by(email: email)
+
+begin
+  puts "Visit or create URL? (v / c)"
+  print " > "
+  action = gets.chomp
+  raise unless ["v","c"].include?(action)
+rescue
+  puts "Invalid letter. Choose v or c."
+  retry
+end
+
+if action == "v"
+  puts "Where do you want to go?"
+  print " > "
+  url = gets.chomp
+  short_url = ShortenedUrl.find_by(short_url: url)
+  Visit.record_visit!(user: user, shortened_url: short_url)
+  long_url = ShortenedUrl.find_by(short_url: url).long_url
+  puts "Sending you to #{long_url} . . ."
+  Launchy.open(long_url)
+else
+  puts "What url do you want to shorten?"
+  print " > "
+  long_url = gets.chomp
+  short_url = ShortenedUrl.make_shortened_url!(user: user, long_url: long_url)
+  puts "Your short url is: #{short_url.short_url}"
+end
+
+puts "Peace! Get outa here! Long live Team Liquid!!!"
