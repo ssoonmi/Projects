@@ -1,0 +1,28 @@
+<% is_live = '' %>
+<% is_live = (album.is_live) ? 'live' : 'studio' unless album.is_live.nil? %>
+
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="album[band_id]" value="<%= params[:band_id] || album.band_id %>">
+    <div style="width: 250px; display: flex; flex-direction: row; flex-wrap: wrap; ">
+      <%= label('title', 'Title') %>
+      <%= input('album[title]', 'title', album.title) %>
+
+      <%= label('year', 'Year') %>
+      <%= input('album[year]', 'year', album.year, 'number') %>
+
+      <%= label('live', 'Live') %>
+      <%= radio_input('album[is_live]', 'live', is_live, 'live') %>
+      <!-- <input type="radio" name="album[is_live]" value="live"> -->
+
+      <%= label('studio', 'Studio') %>
+      <%= radio_input('album[is_live]', 'studio', is_live, 'studio') %>
+      <!-- <input type="radio" name="album[is_live]" value="studio"> -->
+
+    </div>
+    <input type="submit" value="<%= action %>">
+  </div>
+
+</form>

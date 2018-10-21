@@ -1,0 +1,27 @@
+<section class='show-info'>
+<h2>Album: <%= @album.title.upcase %></h2>
+
+By: <%= @album.band.name %>
+<br/>
+Year: <%= @album.year %>
+<br/>
+<%= "#{@album.is_live ? 'Live' : 'Studio'} Album"%>
+</section>
+
+<section class='show-children'>
+  <h3>Tracks</h3>
+  <%= render @album.tracks %>
+</section>
+
+<section class= 'show-links'>
+<%= button(new_album_track_url(@album.id), 'NEW TRACK') %>
+<br/>
+<%= button(band_url(@album.band_id), 'GO TO BAND') %>
+<br/>
+<%= button(edit_album_url(@album.id), 'EDIT ALBUM') %>
+<form action="<%= album_url(@album.id) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="DELETE ALBUM">
+</form>
+</section>

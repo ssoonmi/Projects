@@ -1,0 +1,11 @@
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div style="width: 250px; display: flex; flex-direction: row; flex-wrap: wrap; ">
+      <%= label('name', 'Name') %>
+      <%= input('band[name]', 'name', band.name) %>
+    </div>
+    <input type="submit" value="<%= action %>">
+  </div>
+
+</form>

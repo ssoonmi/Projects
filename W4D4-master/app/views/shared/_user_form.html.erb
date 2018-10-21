@@ -1,0 +1,21 @@
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div style="width: 250px; display: flex; flex-direction: row; flex-wrap: wrap; ">
+      <div style="flex-basis: 40%;">
+        <label for="email">Email: </label>
+      </div>
+      <div style="flex-basis: 60%; margin-bottom: 20px">
+        <input type="text" name="user[email]" id='email'>
+      </div>
+      <div style="flex-basis: 40%">
+        <label for="password">Password: </label>
+      </div>
+      <div style="flex-basis: 60%; margin-bottom: 20px">
+        <input type="password" name="user[password]">
+      </div>
+    </div>
+    <input type="submit" value="<%= action %>">
+  </div>
+
+</form>

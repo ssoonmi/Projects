@@ -1,0 +1,28 @@
+<% is_bonus = '' %>
+<% is_bonus = (track.is_bonus) ? 'bonus' : 'regular' unless track.is_bonus.nil? %>
+
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="track[album_id]" value="<%= params[:album_id] || track.album_id %>">
+    <div style="width: 250px; display: flex; flex-direction: row; flex-wrap: wrap; ">
+      <%= label('title', 'Title') %>
+      <%= input('track[title]', 'title', track.title) %>
+
+      <%= label('ord', 'Ord') %>
+      <%= input('track[ord]', 'ord', track.ord, 'number') %>
+
+
+      <%= label('regular', 'Regular') %>
+      <%= radio_input('track[is_bonus]', 'regular', is_bonus, 'regular') %>
+
+      <%= label('bonus', 'Bonus') %>
+      <%= radio_input('track[is_bonus]', 'bonus', is_bonus, 'bonus') %>
+
+      <textarea style="white-space: pre-wrap; white-space: pre-line;"name="track[lyrics]" rows="8" cols="80"><%= track.lyrics %></textarea>
+    </div>
+    <input type="submit" value="<%= action %>">
+  </div>
+
+</form>
